@@ -94,7 +94,7 @@ function App() {
       const response = await axios.post("http://localhost:3000/api/companies", {
         naicsCode: selectedCode,
       });
-      setCompanies(response.data.slice(0, 5)); // Get only the first 5 companies
+      setCompanies(response.data); // Get only the first 5 companies
     } catch (error) {
       console.error("Error searching for companies:", error);
     }
@@ -125,7 +125,7 @@ function App() {
       <div>
         <h2>Companies: {companies.length}</h2>
         <ul>
-          {companies.map((company, index) => (
+          {companies.slice(0, 5).map((company, index) => (
             <li key={index}>{company}</li>
           ))}
         </ul>
